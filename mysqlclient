@@ -1,0 +1,26 @@
+<?php
+// Konfigurasi koneksi ke database
+$server = "localhost"; // koneksi ke server MariaDB lokal
+$username = "root";
+$password = ""; // sesuaikan dengan password root MariaDB Anda
+
+// IP host yang ingin diizinkan
+$allowed_host = "192.168.1.7";
+
+try {
+    // Membuat koneksi ke MariaDB
+    $pdo = new PDO("mysql:host=$server", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Query untuk mengizinkan akses dari IP tertentu tanpa password
+    $query = "GRANT ALL PRIVILEGES ON *.* TO 'root'@'$allowed_host' IDENTIFIED BY 'root' WITH GRANT OPTION;";
+    $pdo->exec($query);
+
+    // Menyimpan perubahan
+    $pdo->exec("FLUSH PRIVILEGES;");
+    
+    echo "Akses berhasil diberikan untuk host $allowed_host dengan username root & password root.";
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
